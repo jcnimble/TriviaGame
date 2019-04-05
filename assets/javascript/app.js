@@ -42,7 +42,7 @@ var myQuestions = [
             b: "I'm grody to the max!",
             c: "I'm stoked!",
         },
-        correctAns: "a"
+        correctAns: "c"
     },
     {
         question: "You are given a compliment -- that might be:",
@@ -60,7 +60,7 @@ var myQuestions = [
             b: "Poser",
             c: "The Baddest",
         },
-        correctAns: "c"
+        correctAns: "b"
     },
     {
         question: "Time to go. You say:",
@@ -77,10 +77,11 @@ var score = 0;
 
 var quizContainer = document.getElementById('quiz');
 var resultsContainer = document.getElementById('results');
+var startButton = document.getElementById('start');
 var submitButton = document.getElementById('submit');
 
 
-var number = 90;
+var number = 91;
 var intervalId;
 
 
@@ -98,15 +99,15 @@ function buildQuiz() {
                 answers.push(
                     `<label id="ansButton">
                       <input type="radio" name="question${questionNumber}" value="${letter}">
-                        ${letter}:
-                      ${currentQuestion.answers[letter]} </label>`
+                        ${letter}:   
+                      ${currentQuestion.answers[letter]}</label>`
                 );
             }
 
             //add this question and its answers to the input
             output.push(
-                `<div class="question"> ${currentQuestion.question} </div>
-                    <div class="answers"> ${answers.join('')} </div>
+                `<h3 class="question"> ${currentQuestion.question} </h3>
+                    <h4 class="answers"> ${answers.join('')} </h4>
                     <br>`
             );
         }
@@ -137,21 +138,35 @@ function showResults() {
             numCorrect++;
         }
 
+
     })
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+    resultsContainer.innerHTML = `<h2>You got ${numCorrect} out of ${myQuestions.length}.</h2>`;
+
 }
+
+function rightOrDweeb(){
+    if (numCorrect>5){
+        alert ("You're RIGHTEOUS!!")
+    }
+    else{
+        alert ("Dweeb!!")
+    }
+}
+
+
 
 // display quiz right away
 buildQuiz();
 
 $("#main-que").hide();
 
-//$(document).ready(function(){
-  $("#show").click(function(){
-      console.log("Hi!");
+$("#results").hide();
+
+  $("#start").click(function(){
     $("#main-que").show();
-  });
-//});
+      });
+
+startButton.addEventListener('click', runClock);
 
 function runClock() {
     clearInterval(intervalId);
@@ -160,7 +175,7 @@ function runClock() {
 
 function decrement() {
     number--;
-    $("#show-number").text("Timer: " + number + " seconds");
+    $("#timer").text("Timer: " + number + " seconds");
 
     if (number === 0) {
         stop();
@@ -173,9 +188,9 @@ function stop() {
     clearInterval(intervalId);
 }
 
-//  Execute the run function.
-runClock();
 
 // on submit, show results
 submitButton.addEventListener('click', showResults);
-
+$("#submit").click(function(){
+    $("#results").show();
+  });
