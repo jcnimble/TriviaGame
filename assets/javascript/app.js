@@ -1,6 +1,6 @@
 var myQuestions = [
     {
-        question: "Your Mom is angry that you stayed out after midnight.You say:",
+        question: "Your Mom is angry that you stayed out after midnight. You say:",
         answers: {
             a: "Sorry, Mother",
             b: "Bag your Face",
@@ -18,7 +18,7 @@ var myQuestions = [
         correctAns: "c"
     },
     {
-        question: "You've just be given an attractive top to wear. You're please and say:",
+        question: "You've just be given an attractive top to wear. You're pleased and say:",
         answers: {
             a: "It's gnarly",
             b: "It's nice",
